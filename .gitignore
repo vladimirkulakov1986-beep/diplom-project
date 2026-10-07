@@ -1,0 +1,32 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# SSH keys (НИКОГДА не коммить приватные ключи)
+id_ed25519
+id_ed25519.pub
+diplom_key
+diplom_key.pub
+*.pem
+*.key
+
+# Ansible
+*.retry
+
+# Build/temp
+*.log
+tmp/
+temp/
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Office docs (для диплома сдаются отдельно)
+*.docx
+*.pdf
+*.odt

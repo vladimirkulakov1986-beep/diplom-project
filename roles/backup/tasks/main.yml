@@ -1,0 +1,48 @@
+---
+- name: Ensure backup base directory exists on backup-node
+  file:
+    path: "/backups/{{ inventory_hostname }}"
+    state: directory
+    owner: "debian"
+    group: "debian"
+    mode: "0750"
+  delegate_to: localhost
+  run_once: true
+
+- name: Create timestamped backup directory on backup-node
+  command: mkdir -p "/backups/{{ inventory_hostname }}/{{ ansible_date_time.date }}-{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}"
+  delegate_to: localhost
+  register: backup_dir_res
+  changed_when: false
+  run_once: true
+
+- name: Set backup_path variable on backup-node
+  set_fact:
+    backup_path: "/backups/{{ inventory_hostname }}/{{ ansible_date_time.date }}-{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}"
+  delegate_to: localhost
+  run_once: true
+
+- name: Fetch Nginx site config from web1
+  fetch:
+    src: "/etc/nginx/sites-available/{{ nginx_site_name | default('diplom-site') }}"
+    dest: "{{ backup_path }}"
+    flat: yes
+  when: ansible_services['nginx']|default({})['state'] == 'running'
+
+- name: Fetch website index.html from web1
+  fetch:
+    src: "{{ nginx_root_path | default('/var/www/diplom') }}/index.html"
+    dest: "{{ backup_path }}"
+    flat: yes
+
+- name: Fetch node_exporter systemd unit from web1
+  fetch:
+    src: "/etc/systemd/system/node_exporter.service"
+    dest: "{{ backup_path }}"
+    flat: yes
+
+- name: Fetch apt sources.list from web1
+  fetch:
+    src: "/etc/apt/sources.list"
+    dest: "{{ backup_path }}"
+    flat: yes

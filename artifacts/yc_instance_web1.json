@@ -1,0 +1,62 @@
+{
+  "id": "fhmmsohpqu5rbnoelkma",
+  "folder_id": "b1gvhidc1q42amlros7r",
+  "created_at": "2026-10-01T21:29:18Z",
+  "name": "web1",
+  "zone_id": "ru-central1-a",
+  "platform_id": "standard-v1",
+  "resources": {
+    "memory": "2147483648",
+    "cores": "2",
+    "core_fraction": "100"
+  },
+  "status": "RUNNING",
+  "boot_disk": {
+    "mode": "READ_WRITE",
+    "device_name": "fhmnebaeoqk9ff7mieh7",
+    "auto_delete": true,
+    "disk_id": "fhmnebaeoqk9ff7mieh7"
+  },
+  "network_interfaces": [
+    {
+      "index": "0",
+      "mac_address": "d0:0d:16:e6:23:9d",
+      "subnet_id": "e9b7ipajn221okl96eqs",
+      "primary_v4_address": {
+        "address": "192.168.10.20",
+        "one_to_one_nat": {
+          "address": "51.250.4.102",
+          "ip_version": "IPV4"
+        }
+      },
+      "security_group_ids": [
+        "enp19s02t74qns1gmbgl"
+      ]
+    }
+  ],
+  "fqdn": "web1.diplom.local",
+  "scheduling_policy": {},
+  "network_settings": {
+    "type": "STANDARD"
+  },
+  "placement_policy": {},
+  "gpu_settings": {},
+  "metadata_options": {
+    "gce_http_endpoint": "ENABLED",
+    "aws_v1_http_endpoint": "ENABLED",
+    "gce_http_token": "ENABLED",
+    "aws_v1_http_token": "DISABLED",
+    "aws_v2_http_endpoint": "ENABLED",
+    "aws_v2_http_token": "ENABLED"
+  },
+  "serial_port_settings": {
+    "ssh_authorization": "OS_LOGIN"
+  },
+  "hardware_generation": {
+    "legacy_features": {
+      "pci_topology": "PCI_TOPOLOGY_V2"
+    }
+  },
+  "application": {}
+}
+
