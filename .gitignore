@@ -31,3 +31,10 @@ Thumbs.db
 *.pdf
 *.odt
 tf_state_web1.txt
+*.docx
+*.pdf
+tf_state_web1.txt
+*.tfstate
+.terraform/
+id_ed25519
+id_ed25519.pub
